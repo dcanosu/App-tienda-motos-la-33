@@ -1,5 +1,5 @@
 import time
-from src.conexion import conexion_bd
+from conexion import conexion_bd
 
 def crear_tablas():
     print("⏳ Conectando a la base de datos...")
@@ -33,6 +33,7 @@ def crear_tablas():
         tbl_proveedores = """
         CREATE TABLE IF NOT EXISTS tbl_proveedores(
             id_proveedor INTEGER PRIMARY KEY AUTOINCREMENT,
+            nit VARCHAR(30) NOT NULL,
             nombre_proveedor VARCHAR(50) NOT NULL,
             direccion_proveedor VARCHAR(50) NOT NULL,
             telefono_proveedor VARCHAR(10) NOT NULL,
@@ -48,6 +49,8 @@ def crear_tablas():
         tbl_empleados = """
         CREATE TABLE IF NOT EXISTS tbl_empleados(
             id_empleado INTEGER PRIMARY KEY AUTOINCREMENT,
+            tipo_documento_empleado VARCHAR(30) NOT NULL,
+            numero_documento_empleado VARCHAR(20) NOT NULL,
             nombre_empleado VARCHAR(50) NOT NULL,
             apellido_empleado VARCHAR(50) NOT NULL,
             cargo_empleado VARCHAR(50) NOT NULL,
@@ -65,6 +68,8 @@ def crear_tablas():
         tbl_clientes = """
         CREATE TABLE IF NOT EXISTS tbl_clientes(
             id_cliente INTEGER PRIMARY KEY AUTOINCREMENT,
+            tipo_documento_cliente VARCHAR(30) NOT NULL,
+            numero_documento_cliente VARCHAR(20) NOT NULL,
             nombre_cliente VARCHAR(50) NOT NULL,
             apellido_cliente VARCHAR(50) NOT NULL,
             direccion_cliente VARCHAR(50) NOT NULL,

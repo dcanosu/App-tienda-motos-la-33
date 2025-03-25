@@ -1,5 +1,10 @@
 from tkinter import Label, Tk, Toplevel, Button
 from PIL import Image, ImageTk
+from src.formulario_clientes import formulario_gestion_clientes
+from src.formulario_empleados import formulario_gestion_empleados
+from src.formulario_motos import formulario_gestion_motos
+from src.formulario_proveedor import formulario_gestion_proveedor
+
 
 # Configuración general estilos
 fuente = ("Verdana", 20, "bold")
@@ -56,39 +61,63 @@ def crear_ventana(titulo):
 
 def ventana_gestion_clientes():
     nueva_ventana = crear_ventana("Gestión de clientes")
-    imagen_gestion = cargar_imagen("gui/iconos/gestion_clientes.jpg",1700,1080)
+    imagen_gestion = cargar_imagen("gui/iconos/gestion_clientes.jpg",700,600)
     
     # Mostrar la imagen en la ventana
     label_img = Label(nueva_ventana, image=imagen_gestion)
     label_img.image = imagen_gestion  # Mantener referencia
-    label_img.pack()
+    #label_img.pack()
+    label_img.place(x=30, y=150)
+
+    formulario_gestion_clientes(nueva_ventana)
+    nueva_ventana.after(10, lambda: nueva_ventana.state("zoomed"))
+    boton_formulario = Button(nueva_ventana, text="Información de Clientes", font=("Verdana", "25", "bold"),bg="white", fg="#002060",width="30")
+    boton_formulario.place(x=800, y=150)
 
 def ventana_gestion_proveedor():
     nueva_ventana = crear_ventana("Gestión de proveedores") 
-    imagen_gestion = cargar_imagen("gui/iconos/proveedores2.jpg",1450,800)
+    imagen_gestion = cargar_imagen("gui/iconos/proveedores2.jpg",700,600)
     
     # Mostrar la imagen en la ventana
     label_img = Label(nueva_ventana, image=imagen_gestion)
     label_img.image = imagen_gestion  # Mantener referencia
-    label_img.pack()
+    #label_img.pack()
+    label_img.place(x=30, y=150)
+    
+    formulario_gestion_proveedor(nueva_ventana)
+    nueva_ventana.after(10, lambda: nueva_ventana.state("zoomed"))
+    boton_formulario = Button(nueva_ventana, text="Información de Proveedores", font=("Verdana", "25", "bold"),bg="white", fg="#002060",width="30")
+    boton_formulario.place(x=800, y=150)
     
 def ventana_gestion_empleados():
     nueva_ventana = crear_ventana("Gestión de empleados")
-    imagen_gestion = cargar_imagen("gui/iconos/empleados.jpg",1450,800)
+    imagen_gestion = cargar_imagen("gui/iconos/empleados.jpg",700,600)
     
     # Mostrar la imagen en la ventana
     label_img = Label(nueva_ventana, image=imagen_gestion)
     label_img.image = imagen_gestion  # Mantener referencia
-    label_img.pack()
+    #label_img.pack()
+    label_img.place(x=30, y=150)
+    
+    formulario_gestion_empleados(nueva_ventana)
+    nueva_ventana.after(10, lambda: nueva_ventana.state("zoomed"))
+    boton_formulario = Button(nueva_ventana, text="Información de Empleados", font=("Verdana", "25", "bold"),bg="white", fg="#002060",width="30")
+    boton_formulario.place(x=800, y=150)
 
 def ventana_gestion_motos():
     nueva_ventana = crear_ventana("Gestión de motos")
-    imagen_gestion = cargar_imagen("gui/iconos/gestion_motos.jpg",1450,800)
+    imagen_gestion = cargar_imagen("gui/iconos/gestion_motos.jpg",700,600)
     
     # Mostrar la imagen en la ventana
     label_img = Label(nueva_ventana, image=imagen_gestion)
     label_img.image = imagen_gestion  # Mantener referencia
-    label_img.pack()
+    #label_img.pack()
+    label_img.place(x=30, y=150)
+    
+    formulario_gestion_motos(nueva_ventana)
+    nueva_ventana.after(10, lambda: nueva_ventana.state("zoomed"))
+    boton_formulario = Button(nueva_ventana, text="Información de Motos", font=("Verdana", "25", "bold"),bg="white", fg="#002060",width="30")
+    boton_formulario.place(x=800, y=150)
 
 def ventana_facturacion():
     nueva_ventana = crear_ventana("Facturación")
@@ -99,7 +128,7 @@ def ventana_facturacion():
     label_img.image = imagen_gestion  # Mantener referencia
     label_img.pack()
 
-# Veriión violenta
+# Versión violenta
 """# Botón para abrir la ventana de registro de clientes
 boton_registro = Button(ventana, text="Gestión de clientes", font=fuente_botones,bg="white", fg="#002060",width="15",command=ventana_gestion_clientes)
 boton_registro.place(x=100, y=80)
@@ -130,62 +159,6 @@ botones = [
 ]
 for texto, comando, ancho, eje_x in botones:
     Button(ventana, text=texto, font=fuente_botones, bg="white",fg="#002060", width=ancho, command=comando).place(x=eje_x,y=80)
-
-"""
-Label(ventana, text="DNI: ", justify="center", font=label_fuente, foreground="#002060",bg="white").place(x=100,y=130)
-Label(ventana, text="Nombre: ", justify="left", font=label_fuente, foreground="#002060",background="#FFFFFF").place(x=100,y=160)
-Label(ventana, text="Apellido: ", justify="center", font=label_fuente, foreground="#002060",background="#FFFFFF").place(x=100,y=190)
-Label(ventana, text="Correo: ", justify="center", font=label_fuente, foreground="#002060",background="#FFFFFF").place(x=100,y=220)
-Label(ventana, text="Celular: ", justify="center", font=label_fuente, foreground="#002060",background="#FFFFFF").place(x=100,y=250)
-Label(ventana, text="Genero: ", justify="center", font=label_fuente, foreground="#002060",background="#FFFFFF").place(x=100,y=280)
-#Label(ventana, text="Id_producto: ", justify="center", font="label_fuente, foreground="#002060",background="#FFFFFF").place(x=1000,y=100)
-
-########################### INPUT #########################
-# Son los campos donde el usuario ingresa el text
-#id_cliente = StringVar()
-dni_cliente = StringVar()
-nombre_cliente = StringVar()
-apellido_cliente = StringVar()
-email_cliente = StringVar()
-movil_cliente = StringVar()
-genero_cliente = StringVar()
-opciones_genero = ["Masculino", "Femenino", "No binario", "Transgénero", "Género fluido", "Agénero", "Otro"]
-
-
-### Contrucción de las cajas ###
-#e_id_cliente = ttk.Entry(textvariable=dni_cliente, width=25)
-#e_id_cliente.place(x=300, y=130)
-
-e_dni_cliente = ttk.Entry(textvariable=dni_cliente, width=25)
-e_dni_cliente.place(x=300, y=130)
-
-e_nombre_cliente = ttk.Entry(textvariable=nombre_cliente, width=25)
-e_nombre_cliente.place(x=300, y=160)
-
-e_apellido_cliente = ttk.Entry(textvariable=apellido_cliente, show="*",width=25)
-e_apellido_cliente.place(x=300, y=190)
-
-e_email_cliente = ttk.Entry(textvariable=email_cliente, width=35)
-e_email_cliente.place(x=300, y=220)
-
-e_movil_cliente = ttk.Entry(textvariable=movil_cliente, width=15)
-e_movil_cliente.place(x=300, y=250)
-
-e_genero_cliente = ttk.Combobox(textvariable=genero_cliente, foreground="white",values=opciones_genero, width=15)
-e_genero_cliente.place(x=300, y=280)
-#e_genero_cliente.current(0)"""
-
-
-
-"""### Iconos###
-icono_guardar = PhotoImage(file="iconos/ICONOP.png").subsample(2)
-#icono_guardar = icono_guardar.subsample(2)
-boton_guardar = Button(ventana, image=icono_guardar, command=agregar, bd=0, highlightthickness=5)
-boton_guardar.place(x=300, y=350)
-
-icono_eliminar = PhotoImage(file="iconos/eliminar.png").subsample(14)
-boton_eliminar = Button(ventana, text="Eliminar",image=icono_eliminar, command=eliminar)
-boton_eliminar.place(x=350, y=350)"""
 
 # Siempre siempre tiene que ir al final del código de la ventana
 ventana.mainloop()

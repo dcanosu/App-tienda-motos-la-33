@@ -1,4 +1,4 @@
-from src.conexion import conexion_bd
+from conexion import conexion_bd
 
 def consultar_empleados():
     conexion, cursor = conexion_bd()  # Obtener conexion y cursor
@@ -8,7 +8,7 @@ def consultar_empleados():
     
     try:
         # Consulta de datos
-        cursor.execute("SELECT * FROM tbl_empleados")
+        cursor.execute("SELECT * FROM tbl_clientes")
         empleados = cursor.fetchall()  # Obtener todos los registros
 
         # Mostrar los resultados
