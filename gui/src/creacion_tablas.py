@@ -1,5 +1,5 @@
 import time
-from conexion import conexion_bd
+from gui.src.conexion import conexion_bd
 
 def crear_tablas():
     print("⏳ Conectando a la base de datos...")
