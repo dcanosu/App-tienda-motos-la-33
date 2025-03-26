@@ -4,7 +4,7 @@ from src.formulario_clientes import formulario_gestion_clientes
 from src.formulario_empleados import formulario_gestion_empleados
 from src.formulario_motos import formulario_gestion_motos
 from src.formulario_proveedor import formulario_gestion_proveedor
-
+from src.formulario_facturacion import formulario_gestion_venta
 
 # Configuración general estilos
 fuente = ("Verdana", 20, "bold")
@@ -121,12 +121,18 @@ def ventana_gestion_motos():
 
 def ventana_facturacion():
     nueva_ventana = crear_ventana("Facturación")
-    imagen_gestion = cargar_imagen("gui/iconos/facturacion.jpg",1450,800)
+    imagen_gestion = cargar_imagen("gui/iconos/facturacion.jpg",700,600)
     
     # Mostrar la imagen en la ventana
     label_img = Label(nueva_ventana, image=imagen_gestion)
     label_img.image = imagen_gestion  # Mantener referencia
-    label_img.pack()
+    #label_img.pack()
+    label_img.place(x=30, y=150)
+    
+    formulario_gestion_venta(nueva_ventana)
+    nueva_ventana.after(10, lambda: nueva_ventana.state("zoomed"))
+    boton_formulario = Button(nueva_ventana, text="Información de Ventas", font=("Verdana", "25", "bold"),bg="white", fg="#002060",width="30")
+    boton_formulario.place(x=800, y=150)
 
 # Versión violenta
 """# Botón para abrir la ventana de registro de clientes
