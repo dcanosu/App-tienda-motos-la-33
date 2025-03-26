@@ -50,7 +50,7 @@ def formulario_gestion_empleados(ventana):
     boton_guardar.place(x=900, y=720)
     
     icono_buscar = PhotoImage(file="gui/iconos/buscar.png").subsample(4)
-    boton_buscar = Button(ventana, image=icono_buscar, command=buscar_empleado_formulario)  # falta command="")
+    boton_buscar = Button(ventana, image=icono_buscar, command=lambda: buscar_empleado_formulario(id_empleado, tipo_documento_empleado, numero_documento_empleado, nombre_empleado, apellido_empleado, cargo_empleado, direccion_empleado, telefono_empleado, correo_empleado))  # falta command="")
     boton_buscar.image = icono_buscar  # Mantener referencia
     boton_buscar.place(x=990, y=720)
     
@@ -87,9 +87,9 @@ def guardar_empleado_formulario(tipo_documento_empleado, numero_documento_emplea
             "correo_empleado": correo_empleado.get(),
         }
 
-        print("Cliente agregado con éxito:", cliente)
+        print("✅ Cliente agregado con éxito:", cliente)
         respuesta = guardar_empleado_bd(cliente)
-        messagebox.showinfo("Registro de Cliente", respuesta)
+        messagebox.showinfo("✅ Registro de Cliente", respuesta)
 
     else:
         messagebox.showwarning("Error", "⚠️ Todos los campos obligatorios deben estar llenos.")
@@ -122,19 +122,46 @@ def actualizar_empleado_formulario(tipo_documento_empleado, numero_documento_emp
     else:
         messagebox.showwarning("Error", "⚠️ Todos los campos obligatorios deben estar llenos.")
 
-def buscar_empleado_formulario():
-    """ Abre un cuadro de diálogo para pedir el número de documento y busca el cliente """
-    numero_documento = simpledialog.askstring("Buscar Cliente", "Ingrese el número de documento:")
+# def buscar_empleado_formulario():
+#     """ Abre un cuadro de diálogo para pedir el número de documento y busca el cliente """
+#     numero_documento = simpledialog.askstring("Buscar Cliente", "Ingrese el número de documento:")
+    
+#     if numero_documento:
+#         resultado = buscar_empleado_bd(numero_documento)
+        
+#         if resultado["RESPUESTA"]:
+#             cliente = resultado["Cliente"]
+#             mensaje = f"Cliente encontrado:\n\nID: {cliente[0]}\nDocumento: {cliente[1]}\nNombre: {cliente[2]} {cliente[3]}\nCorreo: {cliente[6]}"
+#             messagebox.showinfo("Cliente Encontrado", mensaje)
+#         else:
+#             messagebox.showwarning("No Encontrado", resultado["Mensaje"])
+#     else:
+#         messagebox.showwarning("Cancelado", "Búsqueda cancelada por el usuario")
+
+def buscar_empleado_formulario(id_empleado, tipo_documento_empleado, numero_documento_empleado, nombre_empleado, apellido_empleado, cargo_empleado, direccion_empleado, telefono_empleado, correo_empleado):
+    """ Busca un cliente y llena los campos de entrada con sus datos """
+    numero_documento = simpledialog.askstring("Buscar Empleado", "Ingrese el número de documento:")
     
     if numero_documento:
         resultado = buscar_empleado_bd(numero_documento)
         
         if resultado["RESPUESTA"]:
-            cliente = resultado["Cliente"]
-            mensaje = f"Cliente encontrado:\n\nID: {cliente[0]}\nDocumento: {cliente[1]}\nNombre: {cliente[2]} {cliente[3]}\nCorreo: {cliente[6]}"
-            messagebox.showinfo("Cliente Encontrado", mensaje)
+            empleado = resultado["Empleado"]
+            #print("Datos obtenidos:", empleado)  # Para verificar los datos obtenidos
+            # Llenar los campos con la información del cliente
+            id_empleado.set(empleado[0])
+            tipo_documento_empleado.set(empleado[1])  # Tipo de documento
+            numero_documento_empleado.set(empleado[2])  # Número de documento
+            nombre_empleado.set(empleado[3])  # Nombre
+            apellido_empleado.set(empleado[4])  # Apellido
+            cargo_empleado.set(empleado[5])
+            direccion_empleado.set(empleado[6])  # Dirección
+            telefono_empleado.set(empleado[7])  # Teléfono
+            correo_empleado.set(empleado[8])  # Correo
+    
         else:
             messagebox.showwarning("No Encontrado", resultado["Mensaje"])
     else:
         messagebox.showwarning("Cancelado", "Búsqueda cancelada por el usuario")
+
 

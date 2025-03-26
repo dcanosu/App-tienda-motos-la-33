@@ -9,8 +9,8 @@ def guardar_venta_bd(venta):
             return {"RESPUESTA": False, "Mensaje": "No se pudo conectar a la base de datos"}
 
         consulta = """INSERT INTO tbl_ventas 
-                      (id_cliente, id_empleado, fecha_venta, total_venta) 
-                      VALUES (?, ?, ?, ?)"""
+                    (id_cliente, id_empleado, fecha_venta, total_venta) 
+                    VALUES (?, ?, ?, ?)"""
         valores = (
             venta["id_cliente"],
             venta["id_empleado"],
