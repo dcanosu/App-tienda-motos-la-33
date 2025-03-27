@@ -27,8 +27,8 @@ Label(text="Tienda de motos la 33", font=fuente_titulos, bg=color_fondo, fg="whi
 Label(ventana, text="Menú principal", justify="center", font=fuente, foreground="white",background=color_fondo).place(x=115,y=45)
 
 # Pie de página
-Label(ventana, text="COPYRIGHT 2025 - TODOS LOS DERECHOS RESERVADOS", font=("Arial", 10, "bold"), bg=color_fondo, fg="white").pack(side="bottom", fill="x")
-Label(ventana, text="política de privacidad y textos legales", font=("Arial", 9, "bold"), bg=color_fondo, fg="white").pack(side="bottom", fill="x")
+Label(ventana, text="COPYRIGHT 2025 - TODOS LOS DERECHOS RESERVADOS", font=("Arial", 15, "bold"), bg=color_fondo, fg="white").pack(side="bottom", fill="x")
+Label(ventana, text="política de privacidad y textos legales", font=("Arial", 13, "bold"), bg=color_fondo, fg="white").pack(side="bottom", fill="x")
 
 
 # Abrir la imagen
@@ -85,8 +85,8 @@ def crear_ventana(titulo):
     Label(nueva_ventana, text=titulo, justify="center", font=fuente, foreground="white",background=color_fondo).place(x=115,y=45)
     
     # Pie de página
-    Label(nueva_ventana, text="COPYRIGHT 2025 - TODOS LOS DERECHOS RESERVADOS", font=("Arial", 10, "bold"), bg=color_fondo, fg="white").pack(side="bottom", fill="x")
-    Label(nueva_ventana, text="política de privacidad y textos legales", font=("Arial", 9, "bold"), bg=color_fondo, fg="white").pack(side="bottom", fill="x")
+    Label(nueva_ventana, text="COPYRIGHT 2025 - TODOS LOS DERECHOS RESERVADOS", font=("Arial", 15, "bold"), bg=color_fondo, fg="white").pack(side="bottom", fill="x")
+    Label(nueva_ventana, text="política de privacidad y textos legales", font=("Arial", 13, "bold"), bg=color_fondo, fg="white").pack(side="bottom", fill="x")
 
     return nueva_ventana
 
@@ -164,10 +164,11 @@ def ventana_facturacion():
     nueva_ventana.after(10, lambda: nueva_ventana.state("zoomed"))
     boton_formulario = Button(nueva_ventana, text="Información de Ventas", font=("Verdana", "25", "bold"),bg="white", fg="#002060",width="30")
     boton_formulario.place(x=800, y=150)
+    
     mostrar_detalles_ventas_empleado(nueva_ventana)
     nueva_ventana.after(10, lambda: nueva_ventana.state("zoomed"))
     boton_formulario = Button(nueva_ventana, text="Detalle de Ventas por empleados", font=("Verdana", "15", "bold"),bg="white", fg="#002060",width="30")
-    boton_formulario.place(x=300, y=150)
+    boton_formulario.place(x=200, y=180)
     
 # Versión violenta
 """# Botón para abrir la ventana de registro de clientes
