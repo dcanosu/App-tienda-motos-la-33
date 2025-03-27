@@ -167,8 +167,8 @@ def ventana_facturacion():
     
     mostrar_detalles_ventas_empleado(nueva_ventana)
     nueva_ventana.after(10, lambda: nueva_ventana.state("zoomed"))
-    boton_formulario = Button(nueva_ventana, text="Detalle de Ventas por empleados", font=("Verdana", "15", "bold"),bg="white", fg="#002060",width="30")
-    boton_formulario.place(x=200, y=180)
+    boton_formulario = Button(nueva_ventana, text="Detalle de ventas por empleados", font=("Verdana", "18", "bold"),bg="white", fg="#002060",width="30")
+    boton_formulario.place(x=170, y=180)
     
 # Versión violenta
 """# Botón para abrir la ventana de registro de clientes

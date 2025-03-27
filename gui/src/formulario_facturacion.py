@@ -127,14 +127,14 @@ def mostrar_detalles_ventas_empleado(ventana):
     style.configure("Treeview.Heading", font=("Verdana", 11, "bold"), background="#002060", foreground="white")
 
     tabla = ttk.Treeview(ventana)
-    tabla.place(x=90, y=220)
+    tabla.place(x=80, y=230)
 
     # Definir columnas
     tabla["columns"] = ("ID Empleado", "Nombre", "Apellido", "Cargo", "Total Ventas")
     
     # Configurar el ancho y alineación de las columnas
     tabla.column("#0", width=0, stretch=NO)
-    tabla.column("ID Empleado", width=80, anchor=CENTER)
+    tabla.column("ID Empleado", width=100, anchor=CENTER)
     tabla.column("Nombre", width=150, anchor=CENTER)
     tabla.column("Apellido", width=150, anchor=CENTER)
     tabla.column("Cargo", width=100, anchor=CENTER)
