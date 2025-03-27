@@ -45,22 +45,22 @@ def formulario_gestion_empleados(ventana):
     Entry(ventana, textvariable=correo_empleado, font=entry_fuente, background=color_bg, foreground=color_fg).place(x=1015, y=650)
 
     icono_guardar = PhotoImage(file="gui/iconos/guardar.png").subsample(4)
-    boton_guardar = Button(ventana, image=icono_guardar, command=lambda: guardar_empleado_formulario(tipo_documento_empleado, numero_documento_empleado,nombre_empleado, apellido_empleado, direccion_empleado,telefono_empleado, correo_empleado)) # falta command="")
+    boton_guardar = Button(ventana, image=icono_guardar, command=lambda: guardar_empleado_formulario(tipo_documento_empleado, numero_documento_empleado,nombre_empleado, apellido_empleado, cargo_empleado, direccion_empleado,telefono_empleado, correo_empleado))
     boton_guardar.image = icono_guardar  # Mantener referencia
     boton_guardar.place(x=900, y=720)
     
     icono_buscar = PhotoImage(file="gui/iconos/buscar.png").subsample(4)
-    boton_buscar = Button(ventana, image=icono_buscar, command=lambda: buscar_empleado_formulario(id_empleado, tipo_documento_empleado, numero_documento_empleado, nombre_empleado, apellido_empleado, cargo_empleado, direccion_empleado, telefono_empleado, correo_empleado))  # falta command="")
+    boton_buscar = Button(ventana, image=icono_buscar, command=lambda: buscar_empleado_formulario(id_empleado, tipo_documento_empleado, numero_documento_empleado, nombre_empleado, apellido_empleado, cargo_empleado, direccion_empleado, telefono_empleado, correo_empleado))
     boton_buscar.image = icono_buscar  # Mantener referencia
     boton_buscar.place(x=990, y=720)
     
     icono_eliminar = PhotoImage(file="gui/iconos/eliminar.png").subsample(4)
-    boton_eliminar = Button(ventana, image=icono_eliminar, command=lambda: eliminar_empleado_formulario(numero_documento_empleado))  # falta command="")
+    boton_eliminar = Button(ventana, image=icono_eliminar, command=lambda: eliminar_empleado_formulario(numero_documento_empleado))
     boton_eliminar.image = icono_eliminar  # Mantener referencia
     boton_eliminar.place(x=1090, y=720)
     
     icono_actulizar = PhotoImage(file="gui/iconos/actualizar.png").subsample(4)
-    boton_actulizar = Button(ventana, image=icono_actulizar, command=lambda: actualizar_empleado_formulario(tipo_documento_empleado, numero_documento_empleado, nombre_empleado, apellido_empleado,direccion_empleado, telefono_empleado, correo_empleado))  # falta command="")
+    boton_actulizar = Button(ventana, image=icono_actulizar, command=lambda: actualizar_empleado_formulario(tipo_documento_empleado, numero_documento_empleado, nombre_empleado, apellido_empleado, cargo_empleado, direccion_empleado, telefono_empleado, correo_empleado))
     boton_actulizar.image = icono_actulizar  # Mantener referencia
     boton_actulizar.place(x=1190, y=720)
 
@@ -82,6 +82,7 @@ def guardar_empleado_formulario(tipo_documento_empleado, numero_documento_emplea
             "numero_documento_empleado": numero_documento_empleado.get(),
             "nombre_empleado": nombre_empleado.get(),
             "apellido_empleado": apellido_empleado.get(),
+            "cargo_empleado":cargo_empleado.get(),
             "direccion_empleado": direccion_empleado.get(),
             "telefono_empleado": telefono_empleado.get(),
             "correo_empleado": correo_empleado.get(),
@@ -102,14 +103,15 @@ def eliminar_empleado_formulario(numero_documento_empleado):
     else:
         messagebox.showwarning("Error", "⚠️ Debes ingresar un número de documento para eliminar un cliente.")
 
-def actualizar_empleado_formulario(tipo_documento_empleado, numero_documento_empleado, nombre_empleado, apellido_empleado, direccion_empleado, telefono_empleado, correo_empleado):
+def actualizar_empleado_formulario(tipo_documento_empleado, numero_documento_empleado, nombre_empleado, apellido_empleado, cargo_empleado, direccion_empleado, telefono_empleado, correo_empleado):
     """ Actualiza los datos de un cliente existente en la base de datos """
-    if tipo_documento_empleado.get() and numero_documento_empleado.get() and nombre_empleado.get() and apellido_empleado.get() and correo_empleado.get():
+    if tipo_documento_empleado.get() and numero_documento_empleado.get() and nombre_empleado.get() and apellido_empleado.get() and cargo_empleado.get() and correo_empleado.get():
         cliente_actualizado = {
             "tipo_documento_empleado": tipo_documento_empleado.get(),
             "numero_documento_empleado": numero_documento_empleado.get(),
             "nombre_empleado": nombre_empleado.get(),
             "apellido_empleado": apellido_empleado.get(),
+            "cargo_empleado":cargo_empleado.get(),
             "direccion_empleado": direccion_empleado.get(),
             "telefono_empleado": telefono_empleado.get(),
             "correo_empleado": correo_empleado.get(),

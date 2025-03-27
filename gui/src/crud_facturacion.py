@@ -121,3 +121,43 @@ def buscar_cliente_dni(numero_documento):
 
     except Exception as ex:
         return {"RESPUESTA": False, "Mensaje": str(ex)}
+
+def listar_detalles_ventas_empleado_db():
+    """ Lista los detalles de las ventas agrupadas por empleado """
+    try:
+        conexion, cursor = conexion_bd()
+        if not conexion or not cursor:
+            print("❌ No se pudo establecer conexión con la base de datos.")
+            return {"RESPUESTA": False, "Mensaje": "No se pudo conectar a la base de datos"}
+
+        consulta = """SELECT 
+                        e.id_empleado, 
+                        e.nombre_empleado, 
+                        e.apellido_empleado, 
+                        e.cargo_empleado,
+                        COALESCE(SUM(ve.total_venta), 0) AS total_ventas
+                    FROM tbl_empleados e
+                    LEFT JOIN tbl_ventas ve ON e.id_empleado = ve.id_empleado
+                    GROUP BY e.id_empleado, e.nombre_empleado, e.apellido_empleado, e.cargo_empleado
+                    ORDER BY total_ventas DESC"""
+        
+        cursor.execute(consulta)
+        resultados = cursor.fetchall()
+
+        if resultados:
+            empleados_ventas = [
+                {
+                    "ID Empleado": fila[0],
+                    "Nombre": fila[1],
+                    "Apellido": fila[2],
+                    "Cargo": fila[3],
+                    "Total Ventas": fila[4]
+                }
+                for fila in resultados
+            ]
+            return {"RESPUESTA": True, "Empleados": empleados_ventas}
+        else:
+            return {"RESPUESTA": False, "Mensaje": "No se encontraron ventas registradas"}
+
+    except Exception as ex:
+        return {"RESPUESTA": False, "Mensaje": str(ex)}

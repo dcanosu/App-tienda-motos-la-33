@@ -4,7 +4,7 @@ from src.formulario_clientes import formulario_gestion_clientes
 from src.formulario_empleados import formulario_gestion_empleados
 from src.formulario_motos import formulario_gestion_motos
 from src.formulario_proveedor import formulario_gestion_proveedor
-from src.formulario_facturacion import formulario_gestion_venta
+from src.formulario_facturacion import formulario_gestion_venta, mostrar_detalles_ventas_empleado
 
 # Configuración general estilos
 fuente = ("Verdana", 20, "bold")
@@ -133,7 +133,9 @@ def ventana_facturacion():
     nueva_ventana.after(10, lambda: nueva_ventana.state("zoomed"))
     boton_formulario = Button(nueva_ventana, text="Información de Ventas", font=("Verdana", "25", "bold"),bg="white", fg="#002060",width="30")
     boton_formulario.place(x=800, y=150)
-
+    
+    mostrar_detalles_ventas_empleado(nueva_ventana)
+    
 # Versión violenta
 """# Botón para abrir la ventana de registro de clientes
 boton_registro = Button(ventana, text="Gestión de clientes", font=fuente_botones,bg="white", fg="#002060",width="15",command=ventana_gestion_clientes)
