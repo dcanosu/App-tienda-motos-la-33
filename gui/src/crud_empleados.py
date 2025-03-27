@@ -69,7 +69,6 @@ def eliminar_empleado_bd(numero_documento):
         return {"RESPUESTA": False, "Mensaje": str(ex)}
 
 def actualizar_empleado_bd(empleado_actualizado):
-    """ Actualiza los datos de un empleado en la base de datos """
     try:
         conexion, cursor = conexion_bd()  # Obtener conexión y cursor
         if not conexion or not cursor:

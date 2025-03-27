@@ -48,7 +48,7 @@ APP_TIENDA_MOTOS/
 1. Clona el repositorio:
 
 ```sh
-git clone https://github.com/usuario/tienda-motos.git
+git clone https://github.com/dcanosu/App-tienda-motos-la-33.git
 ```
 
 2. Accede al directorio del proyecto:
@@ -67,7 +67,7 @@ python main.py
 - En todas las ventanas, se mostrará el logo y el pie de página con la información de derechos reservados.
 
 ## Capturas de Pantalla
-- Menú principal
+- **Menú principal**
 ![alt text](image.png)
 
 ## Autor

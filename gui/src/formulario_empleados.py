@@ -77,7 +77,7 @@ def formulario_gestion_empleados(ventana):
 
 def guardar_empleado_formulario(tipo_documento_empleado, numero_documento_empleado, nombre_empleado, apellido_empleado, cargo_empleado, direccion_empleado, telefono_empleado, correo_empleado):
     if tipo_documento_empleado.get() and numero_documento_empleado.get() and nombre_empleado.get() and apellido_empleado.get() and cargo_empleado.get() and correo_empleado.get():
-        cliente = {
+        empleado = {
             "tipo_documento_empleado": tipo_documento_empleado.get(),
             "numero_documento_empleado": numero_documento_empleado.get(),
             "nombre_empleado": nombre_empleado.get(),
@@ -88,15 +88,14 @@ def guardar_empleado_formulario(tipo_documento_empleado, numero_documento_emplea
             "correo_empleado": correo_empleado.get(),
         }
 
-        print("✅ Cliente agregado con éxito:", cliente)
-        respuesta = guardar_empleado_bd(cliente)
-        messagebox.showinfo("✅ Registro de Cliente", respuesta)
+        print("✅ Empleado agregado con éxito:", empleado)
+        respuesta = guardar_empleado_bd(empleado)
+        messagebox.showinfo("✅ Registro de Empleado", respuesta)
 
     else:
         messagebox.showwarning("Error", "⚠️ Todos los campos obligatorios deben estar llenos.")
 
 def eliminar_empleado_formulario(numero_documento_empleado):
-    """ Elimina un cliente de la base de datos basado en su número de documento """
     if numero_documento_empleado.get():
         respuesta = eliminar_empleado_bd(numero_documento_empleado.get())
         messagebox.showinfo("Eliminar Cliente", respuesta)
@@ -104,9 +103,8 @@ def eliminar_empleado_formulario(numero_documento_empleado):
         messagebox.showwarning("Error", "⚠️ Debes ingresar un número de documento para eliminar un cliente.")
 
 def actualizar_empleado_formulario(tipo_documento_empleado, numero_documento_empleado, nombre_empleado, apellido_empleado, cargo_empleado, direccion_empleado, telefono_empleado, correo_empleado):
-    """ Actualiza los datos de un cliente existente en la base de datos """
     if tipo_documento_empleado.get() and numero_documento_empleado.get() and nombre_empleado.get() and apellido_empleado.get() and cargo_empleado.get() and correo_empleado.get():
-        cliente_actualizado = {
+        empleado_actualizado = {
             "tipo_documento_empleado": tipo_documento_empleado.get(),
             "numero_documento_empleado": numero_documento_empleado.get(),
             "nombre_empleado": nombre_empleado.get(),
@@ -117,15 +115,14 @@ def actualizar_empleado_formulario(tipo_documento_empleado, numero_documento_emp
             "correo_empleado": correo_empleado.get(),
         }
 
-        print("Cliente actualizado con éxito:", cliente_actualizado)
-        respuesta = actualizar_empleado_bd(cliente_actualizado)
+        print("Cliente actualizado con éxito:", empleado_actualizado)
+        respuesta = actualizar_empleado_bd(empleado_actualizado)
         messagebox.showinfo("Actualizar Cliente", respuesta)
     
     else:
         messagebox.showwarning("Error", "⚠️ Todos los campos obligatorios deben estar llenos.")
 
 def buscar_empleado_formulario(id_empleado, tipo_documento_empleado, numero_documento_empleado, nombre_empleado, apellido_empleado, cargo_empleado, direccion_empleado, telefono_empleado, correo_empleado):
-    """ Busca un cliente y llena los campos de entrada con sus datos """
     numero_documento = simpledialog.askstring("Buscar Empleado", "Ingrese el número de documento:")
     
     if numero_documento:
