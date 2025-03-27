@@ -1,12 +1,7 @@
-# App-tienda-motos-la-33
-Manejo de inventario y ventas
-
-# Tienda de Motos La 33
-
+# App Tienda de Motos la 33
 Este es un proyecto de interfaz gráfica desarrollado en Python utilizando Tkinter. La aplicación gestiona la visualización de información sobre una tienda de motos.
 
 ## Características
-
 - **Interfaz gráfica con Tkinter**
 - **Ventana principal con menú**
 - **Manejo de ventanas secundarias**
@@ -14,7 +9,6 @@ Este es un proyecto de interfaz gráfica desarrollado en Python utilizando Tkint
 - **Imágenes y diseño responsivo**
 
 ## Requisitos
-
 Asegúrate de tener instaladas las siguientes dependencias antes de ejecutar el proyecto:
 
 ```sh
@@ -22,7 +16,6 @@ pip install pillow
 ```
 
 ## Estructura del Proyecto
-
 ```
 📂 tienda_motos
  ├── gui/
@@ -51,9 +44,7 @@ APP_TIENDA_MOTOS/
 │── LICENSE
 ```
 
-
 ## Instalación y Ejecución
-
 1. Clona el repositorio:
 
 ```sh
@@ -61,34 +52,29 @@ git clone https://github.com/usuario/tienda-motos.git
 ```
 
 2. Accede al directorio del proyecto:
-
 ```sh
 cd tienda-motos
 ```
 
 3. Ejecuta la aplicación:
-
 ```sh
 python main.py
 ```
 
 ## Uso
-
 - Al ejecutar la aplicación, se abrirá la ventana principal con el logo y el menú.
 - Puedes navegar entre las diferentes secciones de la aplicación.
 - En todas las ventanas, se mostrará el logo y el pie de página con la información de derechos reservados.
 
 ## Capturas de Pantalla
-
-_(Aquí puedes agregar imágenes de la interfaz)_
+- Menú principal
+![alt text](image.png)
 
 ## Autor
-
-Desarrollado por [Tu Nombre].
+Desarrollado por Daniel Cano Suarez y Mateo Agudelo Restrepo.
 
 ## Licencia
-
-Este proyecto está bajo la licencia MIT.
+Este proyecto está bajo la licencia Apache-2.0 license.
 """
 1️⃣ fetchall() → Obtener todos los resultados
 📌 Este método devuelve todas las filas de la consulta en una lista de tuplas.
