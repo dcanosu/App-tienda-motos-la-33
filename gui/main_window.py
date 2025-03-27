@@ -19,11 +19,17 @@ ventana.title("TIENDA DE MOTOS LA 33")
 ventana.resizable(True, True)
 ventana.configure(background="#FFFFFF")
 
+# Encabezado
 Label(bg=color_fondo, width="550", height="6").pack()
 #Label(text="Tienda de motos la 33", font=fuente_titulos, bg="#e31010", fg="white", width="550", height="3").pack()
 Label(text="Tienda de motos la 33", font=fuente_titulos, bg=color_fondo, fg="white").place(x=500,y=20)
 #label_fuente = ("Verdana", 14, "bold")
 Label(ventana, text="Menú principal", justify="center", font=fuente, foreground="white",background=color_fondo).place(x=115,y=45)
+
+# Pie de página
+Label(ventana, text="COPYRIGHT 2025 - TODOS LOS DERECHOS RESERVADOS", font=("Arial", 10, "bold"), bg=color_fondo, fg="white").pack(side="bottom", fill="x")
+Label(ventana, text="política de privacidad y textos legales", font=("Arial", 9, "bold"), bg=color_fondo, fg="white").pack(side="bottom", fill="x")
+
 
 # Abrir la imagen
 imagen_pil = Image.open("gui/iconos/main.jpg")
@@ -41,6 +47,16 @@ label = Label(ventana, image=imagen_tk)
 label.image = imagen_tk  # Evita que Python la elimine por el recolector de basura
 label.pack()
 
+# Cargar el logo
+logo_pil = Image.open("gui/iconos/logo.jpg")  # Ajusta la ruta según corresponda
+logo_pil = logo_pil.resize((80, 80), Image.LANCZOS)  # Ajusta el tamaño del logo
+logo_tk = ImageTk.PhotoImage(logo_pil)  # Convertir a formato compatible con Tkinter
+
+# Mostrar el logo en la parte superior izquierda
+logo_label = Label(ventana, image=logo_tk, bg=color_fondo)
+logo_label.image = logo_tk  # Evitar que el recolector de basura lo elimine
+logo_label.place(x=10, y=5)  # Ajusta la posición si es necesario
+
 def cargar_imagen(ruta, ancho, alto):
     imagen_pil = Image.open(ruta).resize((ancho, alto), Image.LANCZOS)
     return ImageTk.PhotoImage(imagen_pil)
@@ -54,9 +70,24 @@ def crear_ventana(titulo):
 
     # Encabezado
     Label(nueva_ventana,bg=color_fondo, width="550", height="6").pack()
+    # Cargar el logo
+    logo_pil = Image.open("gui/iconos/logo.jpg")  # Ajusta la ruta si es necesario
+    logo_pil = logo_pil.resize((80, 80), Image.LANCZOS)  # Redimensionar la imagen
+    logo_tk = ImageTk.PhotoImage(logo_pil)  # Convertir a formato compatible con Tkinter
+
+    # Crear el Label con el logo en la parte superior
+    logo_label = Label(nueva_ventana, image=logo_tk, bg=color_fondo)
+    logo_label.image = logo_tk  # Mantener referencia para que no desaparezca
+    logo_label.place(x=10, y=5)  # Ajustar posición en la parte superior izquierda
+    
+    # Titulos encabezado
     Label(nueva_ventana, text="Tienda de motos la 33", font=fuente_titulos, bg=color_fondo, fg="white").place(x=550,y=20)
     Label(nueva_ventana, text=titulo, justify="center", font=fuente, foreground="white",background=color_fondo).place(x=115,y=45)
     
+    # Pie de página
+    Label(nueva_ventana, text="COPYRIGHT 2025 - TODOS LOS DERECHOS RESERVADOS", font=("Arial", 10, "bold"), bg=color_fondo, fg="white").pack(side="bottom", fill="x")
+    Label(nueva_ventana, text="política de privacidad y textos legales", font=("Arial", 9, "bold"), bg=color_fondo, fg="white").pack(side="bottom", fill="x")
+
     return nueva_ventana
 
 def ventana_gestion_clientes():
@@ -133,8 +164,10 @@ def ventana_facturacion():
     nueva_ventana.after(10, lambda: nueva_ventana.state("zoomed"))
     boton_formulario = Button(nueva_ventana, text="Información de Ventas", font=("Verdana", "25", "bold"),bg="white", fg="#002060",width="30")
     boton_formulario.place(x=800, y=150)
-    
     mostrar_detalles_ventas_empleado(nueva_ventana)
+    nueva_ventana.after(10, lambda: nueva_ventana.state("zoomed"))
+    boton_formulario = Button(nueva_ventana, text="Detalle de Ventas por empleados", font=("Verdana", "15", "bold"),bg="white", fg="#002060",width="30")
+    boton_formulario.place(x=300, y=150)
     
 # Versión violenta
 """# Botón para abrir la ventana de registro de clientes

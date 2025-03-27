@@ -45,21 +45,21 @@ def formulario_gestion_clientes(ventana):
     boton_guardar.place(x=900, y=670)
     
     icono_buscar = PhotoImage(file="gui/iconos/buscar.png").subsample(4)
-    boton_buscar = Button(ventana, image=icono_buscar, command=buscar_cliente_formulario)  # falta command="")
+    boton_buscar = Button(ventana, image=icono_buscar, command=lambda: buscar_cliente_formulario(id_cliente, tipo_documento_cliente, numero_documento_cliente, nombre_cliente, apellido_cliente, direccion_cliente, telefono_cliente, correo_cliente))
     boton_buscar.image = icono_buscar  # Mantener referencia
     boton_buscar.place(x=990, y=670)
     
     icono_eliminar = PhotoImage(file="gui/iconos/eliminar.png").subsample(4)
-    boton_eliminar = Button(ventana, image=icono_eliminar, command=lambda: eliminar_cliente_formulario(numero_documento_cliente))  # falta command="")
+    boton_eliminar = Button(ventana, image=icono_eliminar, command=lambda: eliminar_cliente_formulario(numero_documento_cliente))
     boton_eliminar.image = icono_eliminar  # Mantener referencia
     boton_eliminar.place(x=1090, y=670)
     
     icono_actulizar = PhotoImage(file="gui/iconos/actualizar.png").subsample(4)
-    boton_actulizar = Button(ventana, image=icono_actulizar, command=lambda: actualizar_cliente_formulario(tipo_documento_cliente, numero_documento_cliente, nombre_cliente, apellido_cliente,direccion_cliente, telefono_cliente, correo_cliente))  # falta command="")
+    boton_actulizar = Button(ventana, image=icono_actulizar, command=lambda: actualizar_cliente_formulario(tipo_documento_cliente, numero_documento_cliente, nombre_cliente, apellido_cliente,direccion_cliente, telefono_cliente, correo_cliente)) 
     boton_actulizar.image = icono_actulizar  # Mantener referencia
     boton_actulizar.place(x=1190, y=670)
 
-    # Retornar variables para su uso posterior si es necesario
+    # Retornar variables para su uso posterior
     return {
         "tipo_documento_cliente": tipo_documento_cliente,
         "numero_documento_cliente": numero_documento_cliente,
@@ -117,7 +117,7 @@ def actualizar_cliente_formulario(tipo_documento_cliente, numero_documento_clien
     else:
         messagebox.showwarning("Error", "⚠️ Todos los campos obligatorios deben estar llenos.")
 
-def buscar_cliente_formulario():
+def buscar_cliente_formulario(id_cliente, tipo_documento_cliente, numero_documento_cliente, nombre_cliente, apellido_cliente, direccion_cliente, telefono_cliente, correo_cliente):
     """ Abre un cuadro de diálogo para pedir el número de documento y busca el cliente """
     numero_documento = simpledialog.askstring("Buscar Cliente", "Ingrese el número de documento:")
     
@@ -126,16 +126,17 @@ def buscar_cliente_formulario():
         
         if resultado["RESPUESTA"]:
             cliente = resultado["Cliente"]
-            mensaje = f"Cliente encontrado:\n\nID: {cliente[0]}\nDocumento: {cliente[1]}\nNombre: {cliente[2]} {cliente[3]}\nCorreo: {cliente[6]}"
-            messagebox.showinfo("Cliente Encontrado", mensaje)
+            #print("Datos obtenidos:", empleado)  # Para verificar los datos obtenidos
+            # Llenar los campos con la información del cliente
+            id_cliente.set(cliente[0])
+            tipo_documento_cliente.set(cliente[1])  # Tipo de documento
+            numero_documento_cliente.set(cliente[2])  # Número de documento
+            nombre_cliente.set(cliente[3])  # Nombre
+            apellido_cliente.set(cliente[4])  # Apellido
+            direccion_cliente.set(cliente[5])  # Dirección
+            telefono_cliente.set(cliente[6])  # Teléfono
+            correo_cliente.set(cliente[7])  # Correo
         else:
             messagebox.showwarning("No Encontrado", resultado["Mensaje"])
     else:
         messagebox.showwarning("Cancelado", "Búsqueda cancelada por el usuario")
-
-
-def formulario_gestion_empleados(ventana):
-    pass
-
-def formulario_gestion_motos(ventana):
-    pass

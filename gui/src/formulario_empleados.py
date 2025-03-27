@@ -124,22 +124,6 @@ def actualizar_empleado_formulario(tipo_documento_empleado, numero_documento_emp
     else:
         messagebox.showwarning("Error", "⚠️ Todos los campos obligatorios deben estar llenos.")
 
-# def buscar_empleado_formulario():
-#     """ Abre un cuadro de diálogo para pedir el número de documento y busca el cliente """
-#     numero_documento = simpledialog.askstring("Buscar Cliente", "Ingrese el número de documento:")
-    
-#     if numero_documento:
-#         resultado = buscar_empleado_bd(numero_documento)
-        
-#         if resultado["RESPUESTA"]:
-#             cliente = resultado["Cliente"]
-#             mensaje = f"Cliente encontrado:\n\nID: {cliente[0]}\nDocumento: {cliente[1]}\nNombre: {cliente[2]} {cliente[3]}\nCorreo: {cliente[6]}"
-#             messagebox.showinfo("Cliente Encontrado", mensaje)
-#         else:
-#             messagebox.showwarning("No Encontrado", resultado["Mensaje"])
-#     else:
-#         messagebox.showwarning("Cancelado", "Búsqueda cancelada por el usuario")
-
 def buscar_empleado_formulario(id_empleado, tipo_documento_empleado, numero_documento_empleado, nombre_empleado, apellido_empleado, cargo_empleado, direccion_empleado, telefono_empleado, correo_empleado):
     """ Busca un cliente y llena los campos de entrada con sus datos """
     numero_documento = simpledialog.askstring("Buscar Empleado", "Ingrese el número de documento:")
@@ -156,11 +140,10 @@ def buscar_empleado_formulario(id_empleado, tipo_documento_empleado, numero_docu
             numero_documento_empleado.set(empleado[2])  # Número de documento
             nombre_empleado.set(empleado[3])  # Nombre
             apellido_empleado.set(empleado[4])  # Apellido
-            cargo_empleado.set(empleado[5])
+            cargo_empleado.set(empleado[5])     # Cargo
             direccion_empleado.set(empleado[6])  # Dirección
             telefono_empleado.set(empleado[7])  # Teléfono
             correo_empleado.set(empleado[8])  # Correo
-    
         else:
             messagebox.showwarning("No Encontrado", resultado["Mensaje"])
     else:
