@@ -13,9 +13,7 @@ def guardar_cliente_bd(client):
         valores = tuple(Cliente.values())
 
         consulta = """INSERT INTO tbl_clientes {campos} VALUES(?,?,?,?,?,?,?)""".format(campos=columnas)
-
         cursor.execute(consulta,valores)
-
         conexion.commit()
         creado = cursor.rowcount>0
         if creado:
@@ -27,7 +25,6 @@ def guardar_cliente_bd(client):
         return{"RESPUESTA": False,"Mensaje":str(ex)}
 
 def buscar_cliente_bd(numero_documento):
-    """ Busca un cliente en la base de datos por su número de documento """
     try:
         conexion, cursor = conexion_bd()
         if not conexion or not cursor:
@@ -47,7 +44,6 @@ def buscar_cliente_bd(numero_documento):
         return {"RESPUESTA": False, "Mensaje": str(ex)}
 
 def eliminar_cliente_bd(numero_documento):
-    """ Elimina un cliente de la base de datos basado en su número de documento """
     try:
         conexion, cursor = conexion_bd()  # Obtener conexión y cursor
         if not conexion or not cursor:
@@ -68,7 +64,6 @@ def eliminar_cliente_bd(numero_documento):
         return {"RESPUESTA": False, "Mensaje": str(ex)}
 
 def actualizar_cliente_bd(cliente_actualizado):
-    """ Actualiza los datos de un cliente en la base de datos """
     try:
         conexion, cursor = conexion_bd()  # Obtener conexión y cursor
         if not conexion or not cursor:
@@ -76,9 +71,9 @@ def actualizar_cliente_bd(cliente_actualizado):
             return {"RESPUESTA": False, "Mensaje": "No se pudo conectar a la base de datos"}
 
         consulta = """UPDATE tbl_clientes 
-                      SET tipo_documento_cliente = ?, nombre_cliente = ?, apellido_cliente = ?, 
-                          direccion_cliente = ?, telefono_cliente = ?, correo_cliente = ?
-                      WHERE numero_documento_cliente = ?"""
+                    SET tipo_documento_cliente = ?, nombre_cliente = ?, apellido_cliente = ?, 
+                        direccion_cliente = ?, telefono_cliente = ?, correo_cliente = ?
+                    WHERE numero_documento_cliente = ?"""
 
         valores = (
             cliente_actualizado["tipo_documento_cliente"],

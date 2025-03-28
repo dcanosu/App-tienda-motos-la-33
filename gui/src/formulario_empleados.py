@@ -44,22 +44,22 @@ def formulario_gestion_empleados(ventana):
     Entry(ventana, textvariable=telefono_empleado, font=entry_fuente, background=color_bg, foreground=color_fg).place(x=1015, y=600)
     Entry(ventana, textvariable=correo_empleado, font=entry_fuente, background=color_bg, foreground=color_fg).place(x=1015, y=650)
 
-    icono_guardar = PhotoImage(file="gui/iconos/guardar.png").subsample(4)
+    icono_guardar = PhotoImage(file="gui/iconos/guardar.png").subsample(5)
     boton_guardar = Button(ventana, image=icono_guardar, command=lambda: guardar_empleado_formulario(tipo_documento_empleado, numero_documento_empleado,nombre_empleado, apellido_empleado, cargo_empleado, direccion_empleado,telefono_empleado, correo_empleado))
     boton_guardar.image = icono_guardar  # Mantener referencia
     boton_guardar.place(x=900, y=720)
     
-    icono_buscar = PhotoImage(file="gui/iconos/buscar.png").subsample(4)
+    icono_buscar = PhotoImage(file="gui/iconos/buscar.png").subsample(5)
     boton_buscar = Button(ventana, image=icono_buscar, command=lambda: buscar_empleado_formulario(id_empleado, tipo_documento_empleado, numero_documento_empleado, nombre_empleado, apellido_empleado, cargo_empleado, direccion_empleado, telefono_empleado, correo_empleado))
     boton_buscar.image = icono_buscar  # Mantener referencia
     boton_buscar.place(x=990, y=720)
     
-    icono_eliminar = PhotoImage(file="gui/iconos/eliminar.png").subsample(4)
+    icono_eliminar = PhotoImage(file="gui/iconos/eliminar.png").subsample(5)
     boton_eliminar = Button(ventana, image=icono_eliminar, command=lambda: eliminar_empleado_formulario(numero_documento_empleado))
     boton_eliminar.image = icono_eliminar  # Mantener referencia
     boton_eliminar.place(x=1090, y=720)
     
-    icono_actulizar = PhotoImage(file="gui/iconos/actualizar.png").subsample(4)
+    icono_actulizar = PhotoImage(file="gui/iconos/actualizar.png").subsample(5)
     boton_actulizar = Button(ventana, image=icono_actulizar, command=lambda: actualizar_empleado_formulario(tipo_documento_empleado, numero_documento_empleado, nombre_empleado, apellido_empleado, cargo_empleado, direccion_empleado, telefono_empleado, correo_empleado))
     boton_actulizar.image = icono_actulizar  # Mantener referencia
     boton_actulizar.place(x=1190, y=720)
@@ -115,9 +115,9 @@ def actualizar_empleado_formulario(tipo_documento_empleado, numero_documento_emp
             "correo_empleado": correo_empleado.get(),
         }
 
-        print("Cliente actualizado con éxito:", empleado_actualizado)
+        print("Empleado actualizado con éxito:", empleado_actualizado)
         respuesta = actualizar_empleado_bd(empleado_actualizado)
-        messagebox.showinfo("Actualizar Cliente", respuesta)
+        messagebox.showinfo("Actualizar Empleado", respuesta)
     
     else:
         messagebox.showwarning("Error", "⚠️ Todos los campos obligatorios deben estar llenos.")
@@ -131,7 +131,7 @@ def buscar_empleado_formulario(id_empleado, tipo_documento_empleado, numero_docu
         if resultado["RESPUESTA"]:
             empleado = resultado["Empleado"]
             #print("Datos obtenidos:", empleado)  # Para verificar los datos obtenidos
-            # Llenar los campos con la información del cliente
+            # Llenar los campos con la información del empleados
             id_empleado.set(empleado[0])
             tipo_documento_empleado.set(empleado[1])  # Tipo de documento
             numero_documento_empleado.set(empleado[2])  # Número de documento

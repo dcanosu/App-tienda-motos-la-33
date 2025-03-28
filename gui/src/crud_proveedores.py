@@ -1,7 +1,6 @@
 from src.conexion import conexion_bd
 
 def guardar_proveedor_bd(proveedor):
-    """ Guarda un proveedor en la base de datos """
     Proveedor = dict(proveedor)
     
     try:
@@ -28,7 +27,6 @@ def guardar_proveedor_bd(proveedor):
         return {"RESPUESTA": False, "Mensaje": str(ex)}
 
 def buscar_proveedor_bd(nit):
-    """ Busca un proveedor en la base de datos por su NIT """
     try:
         conexion, cursor = conexion_bd()
         if not conexion or not cursor:
@@ -48,7 +46,6 @@ def buscar_proveedor_bd(nit):
         return {"RESPUESTA": False, "Mensaje": str(ex)}
 
 def eliminar_proveedor_bd(nit):
-    """ Elimina un proveedor de la base de datos basado en su NIT """
     try:
         conexion, cursor = conexion_bd()  # Obtener conexión y cursor
         if not conexion or not cursor:
@@ -69,7 +66,6 @@ def eliminar_proveedor_bd(nit):
         return {"RESPUESTA": False, "Mensaje": str(ex)}
 
 def actualizar_proveedor_bd(proveedor_actualizado):
-    """ Actualiza los datos de un proveedor en la base de datos """
     try:
         conexion, cursor = conexion_bd()  # Obtener conexión y cursor
         if not conexion or not cursor:
@@ -77,9 +73,9 @@ def actualizar_proveedor_bd(proveedor_actualizado):
             return {"RESPUESTA": False, "Mensaje": "No se pudo conectar a la base de datos"}
 
         consulta = """UPDATE tbl_proveedores 
-                      SET nombre_proveedor = ?, direccion_proveedor = ?, 
-                          telefono_proveedor = ?, correo_proveedor = ?
-                      WHERE nit = ?"""
+                    SET nombre_proveedor = ?, direccion_proveedor = ?, 
+                        telefono_proveedor = ?, correo_proveedor = ?
+                    WHERE nit = ?"""
 
         valores = (
             proveedor_actualizado["nombre_proveedor"],

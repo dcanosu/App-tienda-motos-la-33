@@ -32,22 +32,22 @@ def formulario_gestion_proveedor(ventana):
     Entry(ventana, textvariable=correo_proveedor, font=entry_fuente, background=color_bg, foreground=color_fg).place(x=1100, y=500)
 
     icono_guardar = PhotoImage(file="gui/iconos/guardar.png").subsample(4)
-    boton_guardar = Button(ventana, image=icono_guardar, command=lambda: guardar_proveedor_formulario(nit, nombre_proveedor, direccion_proveedor,telefono_proveedor, correo_proveedor)) # falta command="")
+    boton_guardar = Button(ventana, image=icono_guardar, command=lambda: guardar_proveedor_formulario(nit, nombre_proveedor, direccion_proveedor,telefono_proveedor, correo_proveedor)) 
     boton_guardar.image = icono_guardar  # Mantener referencia
     boton_guardar.place(x=900, y=670)
     
     icono_buscar = PhotoImage(file="gui/iconos/buscar.png").subsample(4)
-    boton_buscar = Button(ventana, image=icono_buscar, command=buscar_proveedor_formulario)  # falta command="")
+    boton_buscar = Button(ventana, image=icono_buscar, command=lambda: buscar_proveedor_formulario(id_proveedor, nit, nombre_proveedor, direccion_proveedor, telefono_proveedor, correo_proveedor))  
     boton_buscar.image = icono_buscar  # Mantener referencia
     boton_buscar.place(x=990, y=670)
     
     icono_eliminar = PhotoImage(file="gui/iconos/eliminar.png").subsample(4)
-    boton_eliminar = Button(ventana, image=icono_eliminar, command=lambda: eliminar_proveedor_formulario(nit))  # falta command="")
+    boton_eliminar = Button(ventana, image=icono_eliminar, command=lambda: eliminar_proveedor_formulario(nit))  
     boton_eliminar.image = icono_eliminar  # Mantener referencia
     boton_eliminar.place(x=1100, y=670)
     
     icono_actulizar = PhotoImage(file="gui/iconos/actualizar.png").subsample(4)
-    boton_actulizar = Button(ventana, image=icono_actulizar, command=lambda: actualizar_proveedor_formulario(nit, nombre_proveedor, direccion_proveedor, telefono_proveedor, correo_proveedor))  # falta command="")
+    boton_actulizar = Button(ventana, image=icono_actulizar, command=lambda: actualizar_proveedor_formulario(nit, nombre_proveedor, direccion_proveedor, telefono_proveedor, correo_proveedor))  
     boton_actulizar.image = icono_actulizar  # Mantener referencia
     boton_actulizar.place(x=1190, y=670)
 
@@ -79,7 +79,6 @@ def guardar_proveedor_formulario(nit, nombre_proveedor, direccion_proveedor, tel
         messagebox.showwarning("Error", "⚠️ Todos los campos obligatorios deben estar llenos.")
 
 def eliminar_proveedor_formulario(nit):
-    """ Elimina un proveedor de la base de datos basado en su número de documento """
     if nit.get():
         respuesta = eliminar_proveedor_bd(nit.get())
         messagebox.showinfo("Eliminar Proveedor", respuesta)
@@ -87,7 +86,6 @@ def eliminar_proveedor_formulario(nit):
         messagebox.showwarning("Error", "⚠️ Debes ingresar un número de documento para eliminar un proveedor.")
 
 def actualizar_proveedor_formulario(nit, nombre_proveedor, direccion_proveedor, telefono_proveedor, correo_proveedor):
-    """ Actualiza los datos de un proveedor existente en la base de datos """
     if  nit.get() and nombre_proveedor.get() and direccion_proveedor.get() and telefono_proveedor.get() and correo_proveedor.get():
         proveedor_actualizado = {
             "nit": nit.get(),
@@ -104,17 +102,20 @@ def actualizar_proveedor_formulario(nit, nombre_proveedor, direccion_proveedor, 
     else:
         messagebox.showwarning("Error", "⚠️ Todos los campos obligatorios deben estar llenos.")
 
-def buscar_proveedor_formulario():
-    """ Abre un cuadro de diálogo para pedir el número de documento y busca el proveedor """
-    nit = simpledialog.askstring("Buscar Proveedor", "Ingrese el número del NIT:")
+def buscar_proveedor_formulario(id_proveedor, nit, nombre_proveedor, direccion_proveedor, telefono_proveedor, correo_proveedor):
+    nit_buscar = simpledialog.askstring("Buscar Proveedor", "Ingrese el número del NIT:")
     
-    if nit:
-        resultado = buscar_proveedor_bd(nit)
+    if nit_buscar:
+        resultado = buscar_proveedor_bd(nit_buscar)
         
         if resultado["RESPUESTA"]:
-            proveedor = resultado["Cliente"]
-            mensaje = f"Proveedor encontrado:\n\nID proveedor: {proveedor[0]}\nNit: {proveedor[1]}\nNombre proveedor: {proveedor[2]}\nDirección proveedor: {proveedor[3]}\nTelefono: {proveedor[4]}\nCorreo: {proveedor[5]}"
-            messagebox.showinfo("Proveedor Encontrado", mensaje)
+            proveedor = resultado["Proveedor"]
+            id_proveedor.set(proveedor[0])
+            nit.set(proveedor[1])
+            nombre_proveedor.set(proveedor[2])
+            direccion_proveedor.set(proveedor[3])
+            telefono_proveedor.set(proveedor[4])
+            correo_proveedor.set(proveedor[5])
         else:
             messagebox.showwarning("No Encontrado", resultado["Mensaje"])
     else:

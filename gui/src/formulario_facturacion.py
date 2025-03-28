@@ -98,7 +98,6 @@ def actualizar_venta_formulario(id_cliente,id_empleado,fecha_venta,total_venta):
         messagebox.showwarning("Error", "⚠️ Todos los campos obligatorios deben estar llenos.")
 
 def buscar_venta_formulario(id_venta, id_cliente, id_empleado, fecha_venta, total_venta):
-    """ Abre un cuadro de diálogo para pedir el número de documento y busca el proveedor """
     id_de_venta = simpledialog.askstring("Buscar Venta", "Ingrese el número del ID venta:")
     
     if id_de_venta:

@@ -1,7 +1,6 @@
 from src.conexion import conexion_bd
 
 def guardar_venta_bd(venta):
-    """ Guarda una venta en la base de datos """
     try:
         conexion, cursor = conexion_bd()
         if not conexion or not cursor:
@@ -31,7 +30,6 @@ def guardar_venta_bd(venta):
         return {"RESPUESTA": False, "Mensaje": str(ex)}
 
 def buscar_venta_bd(id_venta):
-    """ Busca una venta en la base de datos por su ID """
     try:
         conexion, cursor = conexion_bd()
         if not conexion or not cursor:
@@ -51,7 +49,6 @@ def buscar_venta_bd(id_venta):
         return {"RESPUESTA": False, "Mensaje": str(ex)}
 
 def eliminar_venta_bd(id_venta):
-    """ Elimina una venta de la base de datos """
     try:
         conexion, cursor = conexion_bd()
         if not conexion or not cursor:
@@ -72,7 +69,6 @@ def eliminar_venta_bd(id_venta):
         return {"RESPUESTA": False, "Mensaje": str(ex)}
 
 def actualizar_venta_bd(venta_actualizada):
-    """ Actualiza una venta existente """
     try:
         conexion, cursor = conexion_bd()
         if not conexion or not cursor:
@@ -80,8 +76,8 @@ def actualizar_venta_bd(venta_actualizada):
             return {"RESPUESTA": False, "Mensaje": "No se pudo conectar a la base de datos"}
 
         consulta = """UPDATE tbl_ventas 
-                      SET id_cliente = ?, id_empleado = ?, fecha_venta = ?, total_venta = ? 
-                      WHERE id_venta = ?"""
+                    SET id_cliente = ?, id_empleado = ?, fecha_venta = ?, total_venta = ? 
+                    WHERE id_venta = ?"""
         valores = (
             venta_actualizada["id_cliente"],
             venta_actualizada["id_empleado"],
@@ -103,7 +99,6 @@ def actualizar_venta_bd(venta_actualizada):
         return {"RESPUESTA": False, "Mensaje": str(ex)}
 
 def buscar_cliente_dni(numero_documento):
-    """ Busca un cliente en la base de datos por su número de documento """
     try:
         conexion, cursor = conexion_bd()
         if not conexion or not cursor:
@@ -123,7 +118,6 @@ def buscar_cliente_dni(numero_documento):
         return {"RESPUESTA": False, "Mensaje": str(ex)}
 
 def listar_detalles_ventas_empleado_db():
-    """ Lista los detalles de las ventas agrupadas por empleado """
     try:
         conexion, cursor = conexion_bd()
         if not conexion or not cursor:

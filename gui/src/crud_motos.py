@@ -1,7 +1,6 @@
 from src.conexion import conexion_bd
 
 def guardar_moto_bd(moto):
-    """ Guarda una moto en la base de datos """
     Moto = dict(moto)
     
     try:
@@ -28,7 +27,6 @@ def guardar_moto_bd(moto):
         return {"RESPUESTA": False, "Mensaje": str(ex)}
 
 def buscar_moto_bd(ref_moto):
-    """ Busca una moto en la base de datos por su referencia """
     try:
         conexion, cursor = conexion_bd()
         if not conexion or not cursor:
@@ -48,7 +46,6 @@ def buscar_moto_bd(ref_moto):
         return {"RESPUESTA": False, "Mensaje": str(ex)}
 
 def eliminar_moto_bd(ref_moto):
-    """ Elimina una moto de la base de datos basada en su referencia """
     try:
         conexion, cursor = conexion_bd()  # Obtener conexión y cursor
         if not conexion or not cursor:
@@ -69,7 +66,6 @@ def eliminar_moto_bd(ref_moto):
         return {"RESPUESTA": False, "Mensaje": str(ex)}
 
 def actualizar_moto_bd(moto_actualizada):
-    """ Actualiza los datos de una moto en la base de datos """
     try:
         conexion, cursor = conexion_bd()  # Obtener conexión y cursor
         if not conexion or not cursor:
@@ -77,9 +73,9 @@ def actualizar_moto_bd(moto_actualizada):
             return {"RESPUESTA": False, "Mensaje": "No se pudo conectar a la base de datos"}
 
         consulta = """UPDATE tbl_motos 
-                      SET modelo = ?, color = ?, 
-                          precio = ?, cantidad_disponible = ?
-                      WHERE ref_moto = ?"""
+                    SET modelo = ?, color = ?, 
+                        precio = ?, cantidad_disponible = ?
+                    WHERE ref_moto = ?"""
 
         valores = (
             moto_actualizada["modelo"],

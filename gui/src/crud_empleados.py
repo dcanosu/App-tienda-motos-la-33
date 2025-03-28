@@ -1,7 +1,6 @@
 from src.conexion import conexion_bd
 
 def guardar_empleado_bd(empleado):
-    """ Guarda un empleado en la base de datos """
     Empleado = dict(empleado)
     
     try:
@@ -28,7 +27,6 @@ def guardar_empleado_bd(empleado):
         return {"RESPUESTA": False, "Mensaje": str(ex)}
 
 def buscar_empleado_bd(numero_documento):
-    """ Busca un empleado en la base de datos por su número de documento """
     try:
         conexion, cursor = conexion_bd()
         if not conexion or not cursor:
@@ -48,7 +46,6 @@ def buscar_empleado_bd(numero_documento):
         return {"RESPUESTA": False, "Mensaje": str(ex)}
 
 def eliminar_empleado_bd(numero_documento):
-    """ Elimina un empleado de la base de datos basado en su número de documento """
     try:
         conexion, cursor = conexion_bd()  # Obtener conexión y cursor
         if not conexion or not cursor:
@@ -76,9 +73,9 @@ def actualizar_empleado_bd(empleado_actualizado):
             return {"RESPUESTA": False, "Mensaje": "No se pudo conectar a la base de datos"}
 
         consulta = """UPDATE tbl_empleados 
-                      SET tipo_documento_empleado = ?, nombre_empleado = ?, apellido_empleado = ?, 
-                          cargo_empleado = ?, direccion_empleado = ?, telefono_empleado = ?, correo_empleado = ?
-                      WHERE numero_documento_empleado = ?"""
+                    SET tipo_documento_empleado = ?, nombre_empleado = ?, apellido_empleado = ?, 
+                        cargo_empleado = ?, direccion_empleado = ?, telefono_empleado = ?, correo_empleado = ?
+                    WHERE numero_documento_empleado = ?"""
 
         valores = (
             empleado_actualizado["tipo_documento_empleado"],

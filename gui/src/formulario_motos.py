@@ -32,22 +32,22 @@ def formulario_gestion_motos(ventana):
     Entry(ventana, textvariable=cantidad_disponible, font=entry_fuente, background=color_bg, foreground=color_fg).place(x=1100, y=500)
 
     icono_guardar = PhotoImage(file="gui/iconos/guardar.png").subsample(4)
-    boton_guardar = Button(ventana, image=icono_guardar, command=lambda: guardar_moto_formulario(ref_moto, modelo, color,precio, cantidad_disponible)) # falta command="")
+    boton_guardar = Button(ventana, image=icono_guardar, command=lambda: guardar_moto_formulario(ref_moto, modelo, color,precio, cantidad_disponible))
     boton_guardar.image = icono_guardar  # Mantener referencia
     boton_guardar.place(x=900, y=670)
     
     icono_buscar = PhotoImage(file="gui/iconos/buscar.png").subsample(4)
-    boton_buscar = Button(ventana, image=icono_buscar, command=buscar_moto_formulario)  # falta command="")
+    boton_buscar = Button(ventana, image=icono_buscar, command=lambda: buscar_moto_formulario(id_moto, ref_moto, modelo, color, precio, cantidad_disponible)) 
     boton_buscar.image = icono_buscar  # Mantener referencia
     boton_buscar.place(x=990, y=670)
     
     icono_eliminar = PhotoImage(file="gui/iconos/eliminar.png").subsample(4)
-    boton_eliminar = Button(ventana, image=icono_eliminar, command=lambda: eliminar_moto_formulario(ref_moto))  # falta command="")
+    boton_eliminar = Button(ventana, image=icono_eliminar, command=lambda: eliminar_moto_formulario(ref_moto)) 
     boton_eliminar.image = icono_eliminar  # Mantener referencia
     boton_eliminar.place(x=1100, y=670)
     
     icono_actulizar = PhotoImage(file="gui/iconos/actualizar.png").subsample(4)
-    boton_actulizar = Button(ventana, image=icono_actulizar, command=lambda: actualizar_moto_formulario(ref_moto, modelo, color, precio, cantidad_disponible))  # falta command="")
+    boton_actulizar = Button(ventana, image=icono_actulizar, command=lambda: actualizar_moto_formulario(ref_moto, modelo, color, precio, cantidad_disponible)) 
     boton_actulizar.image = icono_actulizar  # Mantener referencia
     boton_actulizar.place(x=1190, y=670)
 
@@ -59,7 +59,6 @@ def formulario_gestion_motos(ventana):
         "precio": precio,
         "cantidad_disponible": cantidad_disponible
     }
-
 
 def guardar_moto_formulario(ref_moto, modelo, color, precio, cantidad_disponible):
     if ref_moto.get() and modelo.get() and color.get() and precio.get() and cantidad_disponible.get():
@@ -79,7 +78,6 @@ def guardar_moto_formulario(ref_moto, modelo, color, precio, cantidad_disponible
         messagebox.showwarning("Error", "⚠️ Todos los campos obligatorios deben estar llenos.")
 
 def eliminar_moto_formulario(ref_moto):
-    """ Elimina un moto de la base de datos basado en su id """
     if ref_moto.get():
         respuesta = eliminar_moto_bd(ref_moto.get())
         messagebox.showinfo("Eliminar Moto", respuesta)
@@ -87,7 +85,6 @@ def eliminar_moto_formulario(ref_moto):
         messagebox.showwarning("Error", "⚠️ Debes ingresar un número de documento para eliminar un moto.")
 
 def actualizar_moto_formulario(ref_moto, modelo, color, precio, cantidad_disponible):
-    """ Actualiza los datos de un moto existente en la base de datos """
     if  ref_moto.get() and modelo.get() and color.get() and precio.get() and cantidad_disponible.get():
         moto_actualizado = {
             "ref_moto": ref_moto.get(),
@@ -104,17 +101,21 @@ def actualizar_moto_formulario(ref_moto, modelo, color, precio, cantidad_disponi
     else:
         messagebox.showwarning("Error", "⚠️ Todos los campos obligatorios deben estar llenos.")
 
-def buscar_moto_formulario():
-    """ Abre un cuadro de diálogo para pedir el número de documento y busca el moto """
-    ref_moto = simpledialog.askstring("Buscar Moto", "Ingrese el número del ref_moto:")
+def buscar_moto_formulario(id_moto, ref_moto, modelo, color, precio, cantidad_disponible):
+    ref_moto_buscar = simpledialog.askstring("Buscar Moto", "Ingrese el número del ref_moto:")
     
-    if ref_moto:
-        resultado = buscar_moto_bd(ref_moto)
+    if ref_moto_buscar:
+        resultado = buscar_moto_bd(ref_moto_buscar)
         
         if resultado["RESPUESTA"]:
-            moto = resultado["Cliente"]
-            mensaje = f"Moto encontrado:\n\nID moto: {moto[0]}\nref_moto: {moto[1]}\nNombre moto: {moto[2]}\nDirección moto: {moto[3]}\nTelefono: {moto[4]}\nCorreo: {moto[5]}"
-            messagebox.showinfo("Moto Encontrado", mensaje)
+            moto = resultado["Moto"]
+            id_moto.set(moto[0])
+            ref_moto.set(moto[1])
+            modelo.set(moto[2])
+            color.set(moto[3])
+            precio_formateado = "{:,.0f}".format(moto[4])
+            precio.set(precio_formateado)  # Mostrarlo en el Entry con format
+            cantidad_disponible.set(moto[5])
         else:
             messagebox.showwarning("No Encontrado", resultado["Mensaje"])
     else:

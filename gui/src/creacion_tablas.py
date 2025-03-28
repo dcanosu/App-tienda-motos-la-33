@@ -152,7 +152,7 @@ def crear_tablas_relacionales():
             print(f"✅ Tabla [{nombre_tabla}] creada con éxito")
             time.sleep(0.5)      
         
-        conn.commit() # Confirmar todos los cambios al final
+        conn.commit()
     
     except Exception as e:
         print(f"❌ Error al ejecutar la consulta: {e}")

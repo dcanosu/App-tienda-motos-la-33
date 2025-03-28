@@ -62,7 +62,7 @@ def cargar_imagen(ruta, ancho, alto):
     return ImageTk.PhotoImage(imagen_pil)
 
 def crear_ventana(titulo):
-    """Crea una ventana secundaria con el mismo diseño base."""
+    # Crea una ventana secundaria con el mismo diseño base
     nueva_ventana = Toplevel(ventana)
     nueva_ventana.after(10, lambda: nueva_ventana.state("zoomed"))
     nueva_ventana.title(titulo)
@@ -71,7 +71,7 @@ def crear_ventana(titulo):
     # Encabezado
     Label(nueva_ventana,bg=color_fondo, width="550", height="6").pack()
     # Cargar el logo
-    logo_pil = Image.open("gui/iconos/logo.jpg")  # Ajusta la ruta si es necesario
+    logo_pil = Image.open("gui/iconos/logo.jpg")  # ruta 
     logo_pil = logo_pil.resize((80, 80), Image.LANCZOS)  # Redimensionar la imagen
     logo_tk = ImageTk.PhotoImage(logo_pil)  # Convertir a formato compatible con Tkinter
 
@@ -170,7 +170,7 @@ def ventana_facturacion():
     boton_formulario = Button(nueva_ventana, text="Detalle de ventas por empleados", font=("Verdana", "18", "bold"),bg="white", fg="#002060",width="30")
     boton_formulario.place(x=170, y=180)
     
-# Versión violenta
+# Versión violenta para crear los botones
 """# Botón para abrir la ventana de registro de clientes
 boton_registro = Button(ventana, text="Gestión de clientes", font=fuente_botones,bg="white", fg="#002060",width="15",command=ventana_gestion_clientes)
 boton_registro.place(x=100, y=80)

@@ -90,7 +90,6 @@ def guardar_cliente_formulario(tipo_documento_cliente, numero_documento_cliente,
         messagebox.showwarning("Error", "⚠️ Todos los campos obligatorios deben estar llenos.")
 
 def eliminar_cliente_formulario(numero_documento_cliente):
-    """ Elimina un cliente de la base de datos basado en su número de documento """
     if numero_documento_cliente.get():
         respuesta = eliminar_cliente_bd(numero_documento_cliente.get())
         messagebox.showinfo("Eliminar Cliente", respuesta)
@@ -98,7 +97,6 @@ def eliminar_cliente_formulario(numero_documento_cliente):
         messagebox.showwarning("Error", "⚠️ Debes ingresar un número de documento para eliminar un cliente.")
 
 def actualizar_cliente_formulario(tipo_documento_cliente, numero_documento_cliente, nombre_cliente, apellido_cliente, direccion_cliente, telefono_cliente, correo_cliente):
-    """ Actualiza los datos de un cliente existente en la base de datos """
     if tipo_documento_cliente.get() and numero_documento_cliente.get() and nombre_cliente.get() and apellido_cliente.get() and correo_cliente.get():
         cliente_actualizado = {
             "tipo_documento_cliente": tipo_documento_cliente.get(),
@@ -118,7 +116,7 @@ def actualizar_cliente_formulario(tipo_documento_cliente, numero_documento_clien
         messagebox.showwarning("Error", "⚠️ Todos los campos obligatorios deben estar llenos.")
 
 def buscar_cliente_formulario(id_cliente, tipo_documento_cliente, numero_documento_cliente, nombre_cliente, apellido_cliente, direccion_cliente, telefono_cliente, correo_cliente):
-    """ Abre un cuadro de diálogo para pedir el número de documento y busca el cliente """
+    # Abre un cuadro de diálogo para pedir el número de documento y busca el cliente
     numero_documento = simpledialog.askstring("Buscar Cliente", "Ingrese el número de documento:")
     
     if numero_documento:
